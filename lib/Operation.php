@@ -256,41 +256,21 @@ class Operation implements ISpecificOperation {
 			$command = str_replace('%x', escapeshellarg($extra['oldFilePath']), $command);
 		}
 
-
 		if (strpos($command, '%p')) {
 			
-			$nodeID = -1;
-			try {
-				$nodeID = $node->getId();
-			} catch (InvalidPathException $e) {
-			} catch (NotFoundException $e) {
-			}
-
 			$base_path = $this->config->getSystemValue('datadirectory');
-			$file_name = Filesystem::getPath($nodeID);
-			$owner_name= Filesystem::getOwner($file_name);
-
-			$concated_path = $base_path."/".$owner_name."/files".$file_name;
+			$ncRelPath = $this->replacePlaceholderN($node);
+			$concated_path = $base_path."/".$ncRelPath;
 			$command = str_replace('%p', escapeshellarg($concated_path), $command);
 		}
 
 		if (strpos($command, '%m')) {
-			
-			$nodeID = -1;
-			try {
-				$nodeID = $node->getId();
-			} catch (InvalidPathException $e) {
-			} catch (NotFoundException $e) {
-			}
-
-			$base_path = $this->config->getSystemValue('datadirectory');
-			$file_name_with_dir = Filesystem::getPath($nodeID);
-			
-			$file_name = @end((explode('/', $file_name_with_dir)));
-			
-			$command = str_replace('%m', $file_name, $command);
+			$ncRelPath = $this->replacePlaceholderN($node);
+			$file_name = @end((explode('/', $ncRelPath)));
+			$command = str_replace('%m', escapeshellarg($file_name), $command);
+			unset($ncRelPath);
+			unset($file_name);
 		}
-
 
 		return $command;
 	}
