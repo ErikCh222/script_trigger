@@ -7,6 +7,7 @@ This modfication contains added argument to get fully qualified filepath for fil
 This will work even with enabled encryption and that was reason to add this commands. 
 
 ADDED 2 new commands:
+
 %p - will give full system file path
 
 %m - will give full name
