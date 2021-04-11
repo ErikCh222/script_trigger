@@ -8,8 +8,10 @@ This will work even with enabled encryption and that was reason to add this comm
 
 ADDED 2 new commands:
 %p - will give full system file path
+
 %m - will give full name
 
 Example 
+
 cp %p /home/%m
 
