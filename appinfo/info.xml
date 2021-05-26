@@ -7,7 +7,7 @@
 	<description>Pass files on to external scripts depending on a defined set of rules.</description>
 	<version>1.6.0</version>
 	<licence>agpl</licence>
-	<author mail="blizzz@arthur-schiwon.de">Arthur Schiwon</author>
+	<author mail=""></author>
 	<namespace>WorkflowScript</namespace>
 	<types>
 		<filesystem/>
